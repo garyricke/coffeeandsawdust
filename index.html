@@ -1320,59 +1320,76 @@
     }
 
     /* Team cards in modal */
-    .team-cards {
+    /* ═══════════════════════════════════════════
+       TEAM SECTION
+    ═══════════════════════════════════════════ */
+    #team {
+      padding: 7rem 0;
+      background: var(--mist);
+    }
+
+    #team .section-label { display: block; }
+
+    .team-section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .team-section-header .section-sub { margin: 0 auto; }
+
+    .team-section-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-bottom: 2rem;
+      gap: 3rem 2rem;
     }
-    .team-card {
-      position: relative;
-      border-radius: var(--radius-lg);
+
+    .team-member-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .team-photo-ring {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
       overflow: hidden;
-      aspect-ratio: 3 / 4;
+      margin-bottom: 1.75rem;
+      border: 4px solid var(--sawdust);
+      box-shadow: 0 0 0 6px var(--white), 0 0 0 8px rgba(107,68,35,0.2), var(--shadow);
+      flex-shrink: 0;
     }
-    .team-card-photo {
-      position: absolute;
-      inset: 0;
+
+    .team-photo-ring img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
       display: block;
     }
-    .team-card-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      padding: 3rem 1.25rem 1.25rem;
-      background: linear-gradient(
-        to top,
-        rgba(43,27,23,0.97) 0%,
-        rgba(43,27,23,0.75) 55%,
-        transparent 100%
-      );
-    }
-    .team-card h4 {
+
+    .team-member-card h3 {
       font-family: var(--font-head);
-      font-size: 1.25rem;
-      color: var(--white);
-      margin-bottom: 0.2rem;
+      font-size: 1.75rem;
+      color: var(--espresso);
+      margin-bottom: 0.25rem;
     }
-    .team-card .role {
+
+    .team-member-role {
       font-family: var(--font-sub);
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--sawdust);
-      margin-bottom: 0.6rem;
+      color: var(--walnut);
+      margin-bottom: 1rem;
     }
-    .team-card p {
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.72);
-      line-height: 1.55;
+
+    .team-member-card p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      line-height: 1.7;
+      max-width: 300px;
     }
 
     /* ═══════════════════════════════════════════
@@ -1481,9 +1498,8 @@
       .footer-bottom { flex-direction: column; text-align: center; }
 
       .modal-details { grid-template-columns: 1fr; }
-      .team-cards { grid-template-columns: 1fr; }
-      .team-cards .team-card:last-child { grid-column: auto; max-width: 100%; margin: 0; }
-      .team-card { aspect-ratio: 3 / 4.5; }
+      .team-section-cards { grid-template-columns: 1fr; gap: 2.5rem; }
+      .team-photo-ring { width: 160px; height: 160px; }
       .modal-body { padding: 1.5rem; }
     }
 
@@ -1511,6 +1527,7 @@
     <ul class="nav-links">
       <li><a href="#about">Our Story</a></li>
       <li><a href="#products">Shop</a></li>
+      <li><a href="#team">The Team</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#testimonials">Reviews</a></li>
       <li><a href="#custom-order">Custom Order</a></li>
@@ -1528,6 +1545,7 @@
 <div class="mobile-menu" id="mobile-menu" role="menu">
   <a href="#about" role="menuitem">Our Story</a>
   <a href="#products" role="menuitem">Shop</a>
+  <a href="#team" role="menuitem">The Team</a>
   <a href="#process" role="menuitem">Process</a>
   <a href="#testimonials" role="menuitem">Reviews</a>
   <a href="#custom-order" role="menuitem">Custom Order</a>
@@ -1563,7 +1581,7 @@
 
     <div class="hero-actions">
       <a href="#products" class="btn btn-primary">Shop Our Products</a>
-      <button class="btn btn-outline" onclick="openModal('modal-team')">Meet the Makers</button>
+      <a href="#team" class="btn btn-outline">Meet the Makers</a>
     </div>
 
     <div class="hero-stats">
@@ -1638,8 +1656,53 @@
 
         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
           <button class="btn btn-dark" onclick="openModal('modal-about')">See How It Started →</button>
-          <button class="btn btn-ghost" onclick="openModal('modal-team')">Meet the Team</button>
+          <a href="#team" class="btn btn-ghost">Meet the Team</a>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TEAM
+═══════════════════════════════════════════ -->
+<section id="team" aria-label="Meet the Team">
+  <div class="container">
+    <div class="team-section-header">
+      <span class="section-label">The Makers</span>
+      <h2 class="section-title">Meet the Team</h2>
+      <p class="section-sub">Three BHS students, one shared mission — make something real, make it well, and make it last.</p>
+    </div>
+
+    <div class="team-section-cards">
+
+      <div class="team-member-card fade-up">
+        <div class="team-photo-ring">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_400,h_400,c_fill,g_face/v1772073858/profile-dylan_zeciil.jpg" alt="Dylan — Founder and Craftsman" loading="lazy" />
+        </div>
+        <h3>Dylan</h3>
+        <div class="team-member-role">Founder & Craftsman</div>
+        <p>Senior at BHS. Dylan is the builder — the one with sawdust in his hair and a vision for every slab. He drives 45 minutes to Owl Hardwood 1–2× a month because the right wood is worth it.</p>
+      </div>
+
+      <div class="team-member-card fade-up">
+        <div class="team-photo-ring">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_400,h_400,c_fill,g_face/v1772074259/profile-jimmy-b_lg0hul.jpg" alt="Jimmy — Advertising and PR" loading="lazy" />
+        </div>
+        <h3>Jimmy</h3>
+        <div class="team-member-role">Advertising & PR</div>
+        <p>Junior at BHS. Jimmy handles advertising, public speaking, and keeps operations organized. The voice that takes Coffee & Sawdust to new audiences — markets, pitches, and beyond.</p>
+      </div>
+
+      <div class="team-member-card fade-up">
+        <div class="team-photo-ring">
+          <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_400,h_400,c_fill,g_face/v1772073857/profile-sasha_k0whkc.jpg" alt="Sasha — Brand and Social Media" loading="lazy" />
+        </div>
+        <h3>Sasha</h3>
+        <div class="team-member-role">Brand & Social Media</div>
+        <p>Senior at BHS. Sasha runs social media and has shaped the brand's visual identity and aesthetic. She's the reason Coffee & Sawdust looks as good as it feels.</p>
       </div>
 
     </div>
@@ -2275,7 +2338,7 @@
         <h5>Company</h5>
         <ul>
           <li><a href="#about">Our Story</a></li>
-          <li><a href="#" onclick="openModal('modal-team'); return false;">Meet the Makers</a></li>
+          <li><a href="#team">Meet the Makers</a></li>
           <li><a href="#process">Our Process</a></li>
           <li><a href="#testimonials">Reviews</a></li>
           <li><a href="#newsletter">Newsletter</a></li>
@@ -2348,67 +2411,13 @@
 
       <div class="modal-cta">
         <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-about')">Request a Custom Piece</a>
-        <button class="btn btn-ghost" onclick="closeModal('modal-about'); openModal('modal-team');">Meet the Team</button>
+        <a href="#team" class="btn btn-ghost" onclick="closeModal('modal-about')">Meet the Team</a>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Modal: Team -->
-<div class="modal-overlay" id="modal-team" role="dialog" aria-modal="true" aria-labelledby="modal-team-title">
-  <div class="modal">
-    <div class="modal-hero">
-      <img src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_1600/v1772074573/about-shop_gzyryj.jpg" alt="The Coffee & Sawdust workshop" />
-      <div class="modal-hero-overlay"></div>
-      <span class="modal-hero-tag">The Makers</span>
-      <h2 class="modal-hero-title" id="modal-team-title">Meet the Team</h2>
-      <button class="modal-close" onclick="closeModal('modal-team')" aria-label="Close">✕</button>
-    </div>
-    <div class="modal-body">
-      <p class="modal-intro">Three BHS students, one shared mission — make something real, make it well, and make it last.</p>
-
-      <div class="team-cards">
-        <div class="team-card">
-          <img class="team-card-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800,c_fill,g_face/v1772073858/profile-dylan_zeciil.jpg" alt="Dylan — Founder and Craftsman" loading="lazy" />
-          <div class="team-card-overlay">
-            <h4>Dylan</h4>
-            <div class="role">Founder & Craftsman</div>
-            <p>Senior at BHS. Dylan is the builder — the one with sawdust in his hair and a vision for every slab. Drives 45 minutes to Owl Hardwood 1–2× a month because the right wood is worth it.</p>
-          </div>
-        </div>
-        <div class="team-card">
-          <img class="team-card-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800,c_fill,g_face/v1772074259/profile-jimmy-b_lg0hul.jpg" alt="Jimmy — Advertising and PR" loading="lazy" />
-          <div class="team-card-overlay">
-            <h4>Jimmy</h4>
-            <div class="role">Advertising & PR</div>
-            <p>Junior at BHS. Jimmy handles advertising, public speaking, and keeps operations organized. The voice that takes Coffee & Sawdust to new audiences — markets, pitches, and beyond.</p>
-          </div>
-        </div>
-        <div class="team-card">
-          <img class="team-card-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800,c_fill,g_face/v1772073857/profile-sasha_k0whkc.jpg" alt="Sasha — Brand and Social Media" loading="lazy" />
-          <div class="team-card-overlay">
-            <h4>Sasha</h4>
-            <div class="role">Brand & Social Media</div>
-            <p>Senior at BHS. Sasha runs social media and has shaped the brand's visual identity and aesthetic. She's the reason Coffee & Sawdust looks as good as it feels.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal-tags">
-        <span class="tag">Batavia, IL</span>
-        <span class="tag">BHS Students</span>
-        <span class="tag">Business Incubator</span>
-        <span class="tag">Rustic Fox Market</span>
-        <span class="tag">Gen Z Entrepreneurs</span>
-      </div>
-
-      <div class="modal-cta">
-        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-team')">Order Something Custom</a>
-        <button class="btn btn-ghost" onclick="closeModal('modal-team')">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Modal: Cutting Boards -->
 <div class="modal-overlay" id="modal-cutting-boards" role="dialog" aria-modal="true" aria-labelledby="modal-cb-title">
