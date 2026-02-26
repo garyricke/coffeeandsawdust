@@ -1,0 +1,2824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Coffee & Sawdust — Handcrafted Wood Goods from Batavia, IL</title>
+  <meta name="description" content="Coffee & Sawdust crafts small-batch, handmade wood cutting boards, charcuterie boards, live edge pieces, and custom laser engravings. Born in a Batavia garage, built to last generations." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Montserrat:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --espresso:    #2B1B17;
+      --sawdust:     #E5C07B;
+      --walnut:      #6B4423;
+      --mist:        #F5F5F0;
+      --padauk:      #A52A2A;
+      --walnut-dark: #3D2510;
+      --sawdust-dark:#C9A45A;
+      --text-body:   #3A2C22;
+      --text-light:  #7A6152;
+      --white:       #FFFFFF;
+
+      --font-head:   'Alfa Slab One', serif;
+      --font-sub:    'Montserrat', sans-serif;
+      --font-body:   'Lora', serif;
+
+      --radius:      8px;
+      --radius-lg:   16px;
+      --shadow:      0 4px 24px rgba(43,27,23,0.12);
+      --shadow-lg:   0 12px 48px rgba(43,27,23,0.20);
+      --transition:  0.3s cubic-bezier(0.4,0,0.2,1);
+      --max-w:       1200px;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-body);
+      background: var(--mist);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    img { display: block; width: 100%; height: auto; }
+
+    a { color: inherit; text-decoration: none; }
+
+    h1, h2, h3 { font-family: var(--font-head); line-height: 1.15; }
+    h4, h5, .label { font-family: var(--font-sub); }
+
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-label {
+      font-family: var(--font-sub);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--walnut);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--espresso);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      color: var(--text-light);
+      max-width: 600px;
+    }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: var(--radius);
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--sawdust);
+      color: var(--espresso);
+      border-color: var(--sawdust);
+    }
+    .btn-primary:hover {
+      background: var(--sawdust-dark);
+      border-color: var(--sawdust-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.7);
+    }
+    .btn-outline:hover {
+      background: var(--white);
+      color: var(--espresso);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: var(--espresso);
+      color: var(--sawdust);
+      border-color: var(--espresso);
+    }
+    .btn-dark:hover {
+      background: var(--walnut-dark);
+      border-color: var(--walnut-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--walnut);
+      border-color: var(--walnut);
+    }
+    .btn-ghost:hover {
+      background: var(--walnut);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════ */
+    #nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(43,27,23,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229,192,123,0.2);
+      transition: background var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+    .nav-logo .logo-main {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      color: var(--sawdust);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo .logo-sub {
+      font-family: var(--font-sub);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(229,192,123,0.6);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--font-sub);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.8);
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--sawdust); }
+
+    .nav-cta { margin-left: 1rem; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--sawdust);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        rgba(43,27,23,0.88) 0%,
+        rgba(43,27,23,0.65) 50%,
+        rgba(43,27,23,0.25) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 8rem 1.5rem 4rem;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sub);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sawdust);
+      margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--sawdust);
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      color: var(--white);
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      max-width: 700px;
+    }
+    .hero-title .accent { color: var(--sawdust); }
+
+    .hero-desc {
+      font-family: var(--font-body);
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.85);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .hero-stat {
+      border-left: 2px solid var(--sawdust);
+      padding-left: 1rem;
+    }
+    .hero-stat .number {
+      font-family: var(--font-head);
+      font-size: 1.75rem;
+      color: var(--sawdust);
+      line-height: 1;
+    }
+    .hero-stat .text {
+      font-family: var(--font-sub);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.5);
+      font-family: var(--font-sub);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      z-index: 2;
+      animation: bounce 2s infinite;
+    }
+    .hero-scroll::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.3);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ═══════════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════════ */
+    #about {
+      padding: 7rem 0;
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-image-wrap img {
+      border-radius: var(--radius-lg);
+      height: 520px;
+      object-fit: cover;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--sawdust);
+      color: var(--espresso);
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: var(--font-sub);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow);
+      line-height: 1.3;
+    }
+    .about-badge span {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      display: block;
+      line-height: 1;
+    }
+
+    .about-text .section-label { display: block; }
+
+    .about-quote {
+      font-family: var(--font-body);
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--walnut);
+      border-left: 3px solid var(--sawdust);
+      padding-left: 1.25rem;
+      margin: 1.75rem 0;
+      line-height: 1.6;
+    }
+
+    .about-team {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1.5rem 0 2rem;
+    }
+    .team-member {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .team-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--sawdust);
+      margin-top: 0.55rem;
+      flex-shrink: 0;
+    }
+    .team-member strong {
+      font-family: var(--font-sub);
+      font-weight: 700;
+      color: var(--espresso);
+    }
+
+    /* ═══════════════════════════════════════════
+       PRODUCTS
+    ═══════════════════════════════════════════ */
+    #products {
+      padding: 7rem 0;
+      background: var(--mist);
+    }
+
+    .products-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .products-header .section-sub {
+      margin: 0 auto;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+      cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .product-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .product-img img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .product-card:hover .product-img img {
+      transform: scale(1.06);
+    }
+
+    .product-tag {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: var(--sawdust);
+      color: var(--espresso);
+      font-family: var(--font-sub);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+    }
+
+    .product-body {
+      padding: 1.5rem;
+    }
+    .product-body h3 {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      color: var(--espresso);
+      margin-bottom: 0.5rem;
+    }
+    .product-body p {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .product-price {
+      font-family: var(--font-sub);
+      font-weight: 700;
+      color: var(--walnut);
+      font-size: 0.95rem;
+    }
+    .btn-learn {
+      font-family: var(--font-sub);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--walnut);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: gap var(--transition), color var(--transition);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+    .btn-learn:hover { gap: 0.6rem; color: var(--padauk); }
+    .btn-learn::after { content: '→'; }
+
+    /* ═══════════════════════════════════════════
+       WHY CHOOSE US
+    ═══════════════════════════════════════════ */
+    #why {
+      padding: 7rem 0;
+      background: var(--espresso);
+    }
+
+    #why .section-label { color: var(--sawdust); opacity: 0.7; }
+    #why .section-title { color: var(--white); }
+
+    .why-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: end;
+      margin-bottom: 4rem;
+    }
+    .why-header .section-sub { color: rgba(255,255,255,0.65); max-width: 100%; }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .why-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(229,192,123,0.15);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .why-card:hover {
+      background: rgba(229,192,123,0.1);
+      transform: translateY(-4px);
+    }
+
+    .why-icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 1.25rem;
+      display: block;
+      color: var(--sawdust);
+    }
+    .why-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .why-card h4 {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--sawdust);
+      margin-bottom: 0.5rem;
+    }
+
+    .why-card p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+    }
+
+    /* ═══════════════════════════════════════════
+       PROCESS
+    ═══════════════════════════════════════════ */
+    #process {
+      padding: 7rem 0;
+      background: var(--white);
+    }
+
+    .process-header { text-align: center; margin-bottom: 4rem; }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 2.5rem;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--sawdust), var(--walnut));
+      z-index: 0;
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      background: var(--espresso);
+      color: var(--sawdust);
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 0 6px var(--white), 0 0 0 8px var(--sawdust);
+      transition: transform var(--transition);
+    }
+    .process-step:hover .step-num { transform: scale(1.1); }
+
+    .step-img {
+      width: 100%;
+      height: 120px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+    .step-img img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .process-step h4 {
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--espresso);
+      margin-bottom: 0.4rem;
+    }
+    .process-step p {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+
+    /* ═══════════════════════════════════════════
+       FEATURED PIECE
+    ═══════════════════════════════════════════ */
+    #featured {
+      padding: 5rem 0;
+      background: var(--walnut);
+      overflow: hidden;
+      position: relative;
+    }
+    #featured::before {
+      content: '';
+      position: absolute;
+      top: -40%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(229,192,123,0.08);
+    }
+
+    .featured-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+    }
+
+    .featured-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .featured-img img {
+      height: 420px;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .featured-img:hover img { transform: scale(1.04); }
+
+    .featured-label {
+      font-family: var(--font-sub);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sawdust);
+      opacity: 0.7;
+      margin-bottom: 0.75rem;
+    }
+    .featured-title {
+      font-family: var(--font-head);
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .featured-desc {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .featured-price {
+      font-family: var(--font-head);
+      font-size: 2rem;
+      color: var(--sawdust);
+      margin-bottom: 0.5rem;
+    }
+    .featured-stars {
+      color: var(--sawdust);
+      font-size: 1rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.1em;
+    }
+    .featured-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    /* ═══════════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════════ */
+    #testimonials {
+      padding: 7rem 0;
+      background: var(--mist);
+    }
+
+    .testimonials-header { text-align: center; margin-bottom: 3.5rem; }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .testimonial-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition);
+      position: relative;
+    }
+    .testimonial-card:hover { transform: translateY(-4px); }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: Georgia, serif;
+      font-size: 5rem;
+      color: var(--sawdust);
+      position: absolute;
+      top: -0.5rem;
+      left: 1.25rem;
+      line-height: 1;
+      opacity: 0.4;
+    }
+
+    .testimonial-stars {
+      color: var(--sawdust-dark);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .testimonial-text {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-body);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--sawdust);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-sub);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--espresso);
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-family: var(--font-sub);
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--espresso);
+    }
+    .author-loc {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+
+    .testimonials-cta { text-align: center; }
+
+    /* ═══════════════════════════════════════════
+       NEWSLETTER
+    ═══════════════════════════════════════════ */
+    #newsletter {
+      padding: 5rem 0;
+      background: var(--sawdust);
+    }
+
+    .newsletter-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .newsletter-text h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      color: var(--espresso);
+      margin-bottom: 0.75rem;
+    }
+    .newsletter-text p {
+      color: rgba(43,27,23,0.75);
+      font-size: 1rem;
+    }
+
+    .nl-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .nl-row {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .nl-form input {
+      flex: 1;
+      padding: 0.9rem 1.25rem;
+      border: 2px solid rgba(43,27,23,0.2);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,0.7);
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      color: var(--espresso);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .nl-form input:focus {
+      outline: none;
+      border-color: var(--espresso);
+      background: var(--white);
+    }
+    .nl-form input::placeholder { color: rgba(43,27,23,0.45); }
+
+    .nl-privacy {
+      font-family: var(--font-sub);
+      font-size: 0.75rem;
+      color: rgba(43,27,23,0.55);
+    }
+
+    /* ═══════════════════════════════════════════
+       CUSTOM ORDER FORM
+    ═══════════════════════════════════════════ */
+    #custom-order {
+      padding: 7rem 0;
+      background: var(--white);
+    }
+
+    .order-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .order-info h2 { margin-bottom: 1rem; }
+    .order-info p { color: var(--text-light); margin-bottom: 1.5rem; }
+
+    .order-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .perk {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .perk-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+      color: var(--walnut);
+    }
+    .perk-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+    .perk-text {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      line-height: 1.5;
+    }
+    .perk-text strong {
+      display: block;
+      font-family: var(--font-sub);
+      font-weight: 700;
+      color: var(--espresso);
+      margin-bottom: 0.1rem;
+    }
+
+    .order-form-wrap {
+      background: var(--mist);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+    .order-form-wrap h3 {
+      font-family: var(--font-head);
+      font-size: 1.5rem;
+      color: var(--espresso);
+      margin-bottom: 1.75rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .field label {
+      font-family: var(--font-sub);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--walnut);
+    }
+    .field input,
+    .field select,
+    .field textarea {
+      padding: 0.8rem 1rem;
+      border: 2px solid rgba(107,68,35,0.2);
+      border-radius: var(--radius);
+      background: var(--white);
+      font-family: var(--font-sub);
+      font-size: 0.9rem;
+      color: var(--espresso);
+      transition: border-color var(--transition);
+      width: 100%;
+    }
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--walnut);
+    }
+    .field textarea { resize: vertical; min-height: 100px; }
+
+    .form-note {
+      font-family: var(--font-sub);
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 0.5rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    #footer {
+      background: var(--espresso);
+      padding: 4rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(229,192,123,0.15);
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand .logo-main {
+      font-family: var(--font-head);
+      font-size: 1.4rem;
+      color: var(--sawdust);
+      margin-bottom: 0.25rem;
+    }
+    .footer-brand .logo-sub {
+      font-family: var(--font-sub);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(229,192,123,0.5);
+      margin-bottom: 1rem;
+    }
+    .footer-brand p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+      max-width: 260px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .social-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(229,192,123,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(229,192,123,0.7);
+      font-size: 0.85rem;
+      transition: all var(--transition);
+      font-family: var(--font-sub);
+      font-weight: 700;
+    }
+    .social-btn:hover {
+      background: var(--sawdust);
+      border-color: var(--sawdust);
+      color: var(--espresso);
+    }
+
+    .footer-col h5 {
+      font-family: var(--font-sub);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sawdust);
+      margin-bottom: 1.25rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+      transition: color var(--transition);
+    }
+    .footer-col ul li a:hover { color: var(--sawdust); }
+
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-bottom p {
+      font-family: var(--font-sub);
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-bottom a {
+      color: rgba(229,192,123,0.5);
+      transition: color var(--transition);
+    }
+    .footer-bottom a:hover { color: var(--sawdust); }
+
+    /* ═══════════════════════════════════════════
+       MODALS
+    ═══════════════════════════════════════════ */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(43,27,23,0.82);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      max-width: 860px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      transform: translateY(24px) scale(0.97);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 24px 80px rgba(43,27,23,0.35);
+    }
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-hero {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+    }
+    .modal-hero img {
+      height: 100%;
+      object-fit: cover;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+    .modal-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(43,27,23,0.7) 0%, transparent 60%);
+    }
+    .modal-hero-title {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 2rem;
+      font-family: var(--font-head);
+      font-size: 2rem;
+      color: var(--white);
+    }
+    .modal-hero-tag {
+      position: absolute;
+      top: 1.25rem;
+      left: 2rem;
+      background: var(--sawdust);
+      color: var(--espresso);
+      font-family: var(--font-sub);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--espresso);
+      transition: background var(--transition), transform var(--transition);
+      font-family: var(--font-sub);
+      font-weight: 700;
+      z-index: 10;
+    }
+    .modal-close:hover {
+      background: var(--white);
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: 2rem 2.5rem 2.5rem;
+    }
+
+    .modal-intro {
+      font-size: 1.1rem;
+      color: var(--text-body);
+      line-height: 1.75;
+      margin-bottom: 1.75rem;
+    }
+
+    .modal-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .detail-card {
+      background: var(--mist);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      border-left: 3px solid var(--sawdust);
+    }
+    .detail-card h5 {
+      font-family: var(--font-sub);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--walnut);
+      margin-bottom: 0.4rem;
+    }
+    .detail-card p {
+      font-size: 0.9rem;
+      color: var(--text-body);
+      line-height: 1.55;
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      background: var(--mist);
+      border: 1px solid rgba(107,68,35,0.2);
+      color: var(--walnut);
+      font-family: var(--font-sub);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+    }
+
+    .modal-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(107,68,35,0.12);
+    }
+
+    /* Team cards in modal */
+    .team-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .team-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3 / 4;
+    }
+    .team-card-photo {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .team-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 3rem 1.25rem 1.25rem;
+      background: linear-gradient(
+        to top,
+        rgba(43,27,23,0.97) 0%,
+        rgba(43,27,23,0.75) 55%,
+        transparent 100%
+      );
+    }
+    .team-card h4 {
+      font-family: var(--font-head);
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .team-card .role {
+      font-family: var(--font-sub);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sawdust);
+      margin-bottom: 0.6rem;
+    }
+    .team-card p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.55;
+    }
+
+    /* ═══════════════════════════════════════════
+       SUCCESS STATES
+    ═══════════════════════════════════════════ */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      background: #f0faf0;
+      border-radius: var(--radius);
+      border: 1px solid #a8d5a2;
+    }
+    .form-success.show { display: block; }
+    .form-success h4 {
+      font-family: var(--font-head);
+      color: #2d6a2d;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    .form-success p { color: #4a7c4a; font-size: 0.9rem; }
+
+    /* ═══════════════════════════════════════════
+       MOBILE NAV
+    ═══════════════════════════════════════════ */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: rgba(43,27,23,0.98);
+      backdrop-filter: blur(12px);
+      padding: 1.5rem;
+      z-index: 999;
+      flex-direction: column;
+      gap: 1rem;
+      border-top: 1px solid rgba(229,192,123,0.15);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-sub);
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(229,192,123,0.1);
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+    ═══════════════════════════════════════════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up:nth-child(2) { transition-delay: 0.1s; }
+    .fade-up:nth-child(3) { transition-delay: 0.2s; }
+    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+    .fade-up:nth-child(5) { transition-delay: 0.4s; }
+    .fade-up:nth-child(6) { transition-delay: 0.5s; }
+    .fade-up:nth-child(7) { transition-delay: 0.6s; }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+      .process-steps::before { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      .about-grid { grid-template-columns: 1fr; }
+      .about-image-wrap img { height: 320px; }
+      .about-badge { display: none; }
+
+      .products-grid { grid-template-columns: 1fr; }
+
+      .why-header { grid-template-columns: 1fr; gap: 1.5rem; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+
+      .process-steps { grid-template-columns: 1fr 1fr; }
+
+      .featured-inner { grid-template-columns: 1fr; }
+      .featured-img img { height: 260px; }
+
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .newsletter-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .nl-row { flex-direction: column; }
+
+      .order-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-grid { grid-template-columns: 1fr; }
+
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+
+      .modal-details { grid-template-columns: 1fr; }
+      .team-cards { grid-template-columns: 1fr 1fr; }
+      .team-cards .team-card:last-child { grid-column: 1 / -1; max-width: 60%; margin: 0 auto; width: 100%; }
+      .modal-body { padding: 1.5rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { gap: 1.25rem; }
+      .why-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav id="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="Coffee & Sawdust Home">
+      <span class="logo-main">Coffee & Sawdust</span>
+      <span class="logo-sub">Batavia, IL · Est. 2024</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#about">Our Story</a></li>
+      <li><a href="#products">Shop</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#custom-order">Custom Order</a></li>
+    </ul>
+
+    <a href="#custom-order" class="btn btn-primary nav-cta">Request a Custom Piece</a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" role="menu">
+  <a href="#about" role="menuitem">Our Story</a>
+  <a href="#products" role="menuitem">Shop</a>
+  <a href="#process" role="menuitem">Process</a>
+  <a href="#testimonials" role="menuitem">Reviews</a>
+  <a href="#custom-order" role="menuitem">Custom Order</a>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section id="hero" aria-label="Hero">
+  <video
+    class="hero-video"
+    src="https://res.cloudinary.com/dsbllwpbh/video/upload/vc_auto,q_auto/v1772073693/Video_Generation_Complete_csgs8n.mp4"
+    autoplay
+    loop
+    muted
+    playsinline
+    aria-hidden="true"
+  ></video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Handcrafted in Batavia, IL</div>
+
+    <h1 class="hero-title">
+      From Sawdust to<br>
+      <span class="accent">Something Special</span>
+    </h1>
+
+    <p class="hero-desc">
+      Every piece begins the same way — fresh coffee, a quiet morning, and the hum of tools in the shop. Coffee & Sawdust was born from a father-son tradition and built into something that lasts for generations.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#products" class="btn btn-primary">Shop Our Products</a>
+      <button class="btn btn-outline" onclick="openModal('modal-team')">Meet the Makers</button>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="number">100%</div>
+        <div class="text">Handcrafted</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">7+</div>
+        <div class="text">Exotic Woods</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">$35–$400</div>
+        <div class="text">Price Range</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">2–3 wks</div>
+        <div class="text">Turnaround</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-scroll" aria-hidden="true">Scroll</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════ -->
+<section id="about" aria-label="About Coffee and Sawdust">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-image-wrap fade-up">
+        <img src="images/about-shop.png" alt="Inside the Coffee & Sawdust woodshop with exotic hardwood lumber and power tools" loading="lazy" />
+        <div class="about-badge">
+          <span>2</span>
+          Generations<br>One Shop
+        </div>
+      </div>
+
+      <div class="about-text fade-up">
+        <span class="section-label">About Coffee & Sawdust</span>
+        <h2 class="section-title">Built on Coffee & Craftsmanship</h2>
+
+        <p class="section-sub" style="margin-bottom: 1.25rem;">
+          At Coffee & Sawdust, every vision begins with a good cup of coffee — and ends with craftsmanship that lasts for generations.
+        </p>
+
+        <blockquote class="about-quote">
+          "Just a father and son making cool things out of wood… and drinking a lot of coffee while we do."
+        </blockquote>
+
+        <p style="margin-bottom: 1.5rem; color: var(--text-light);">
+          Two generations. One shared workshop. What started as weekend projects in a Minnesota basement became a growing Batavia business rooted in tradition, creativity, and the joy of building something real.
+        </p>
+
+        <div class="about-team">
+          <div class="team-member">
+            <div class="team-dot"></div>
+            <p><strong>Dylan</strong> — The craftsman. From a curious kid fueled by his dad's inspiration to a skilled young woodworker bringing fresh style, precision, and new ideas to every build.</p>
+          </div>
+          <div class="team-member">
+            <div class="team-dot"></div>
+            <p><strong>Jimmy</strong> — Advertising and public speaking. The voice behind the brand, taking Coffee & Sawdust to new audiences.</p>
+          </div>
+          <div class="team-member">
+            <div class="team-dot"></div>
+            <p><strong>Sasha</strong> — Social media and brand aesthetics. She crafts the story and visual identity that brings the brand to life.</p>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <button class="btn btn-dark" onclick="openModal('modal-about')">See How It Started →</button>
+          <button class="btn btn-ghost" onclick="openModal('modal-team')">Meet the Team</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     PRODUCTS
+═══════════════════════════════════════════ -->
+<section id="products" aria-label="Products">
+  <div class="container">
+    <div class="products-header">
+      <span class="section-label">Handmade Products</span>
+      <h2 class="section-title">View Our Products</h2>
+      <p class="section-sub">Small-batch wood pieces, each one cut, sanded, and finished by hand. No two pieces are ever exactly the same.</p>
+    </div>
+
+    <div class="products-grid">
+
+      <!-- Cutting Boards -->
+      <article class="product-card fade-up" onclick="openModal('modal-cutting-boards')" role="button" tabindex="0" aria-label="Learn more about Cutting Boards">
+        <div class="product-img">
+          <img src="images/cutting-boards.png" alt="Handcrafted hardwood cutting boards" loading="lazy" />
+          <span class="product-tag">Bestseller</span>
+        </div>
+        <div class="product-body">
+          <h3>Cutting Boards</h3>
+          <p>Durable daily companions — each designed to protect your knives and naturally trap & kill bacteria. Available with or without handle.</p>
+          <div class="product-footer">
+            <span class="product-price">From $45</span>
+            <button class="btn-learn" aria-label="Learn more about cutting boards">Learn More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Charcuterie Boards -->
+      <article class="product-card fade-up" onclick="openModal('modal-charcuterie')" role="button" tabindex="0" aria-label="Learn more about Charcuterie Boards">
+        <div class="product-img">
+          <img src="images/charcuterie.png" alt="Styled walnut charcuterie board with cheeses and meats" loading="lazy" />
+          <span class="product-tag">Fan Favorite</span>
+        </div>
+        <div class="product-body">
+          <h3>Charcuterie Boards</h3>
+          <p>Elegant hosting pieces — perfect for cheese nights, gatherings, and gifting. A showstopper that doubles as art.</p>
+          <div class="product-footer">
+            <span class="product-price">From $65</span>
+            <button class="btn-learn">Learn More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Coasters -->
+      <article class="product-card fade-up" onclick="openModal('modal-coasters')" role="button" tabindex="0" aria-label="Learn more about Coasters">
+        <div class="product-img">
+          <img src="images/coasters.png" alt="Handcrafted wood coasters on marble table" loading="lazy" />
+        </div>
+        <div class="product-body">
+          <h3>Table Coasters</h3>
+          <p>From rustic to modern — protect your tables in style. Each coaster is cut from exotic hardwood with natural grain rings.</p>
+          <div class="product-footer">
+            <span class="product-price">From $35</span>
+            <button class="btn-learn">Learn More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Serving Trays -->
+      <article class="product-card fade-up" onclick="openModal('modal-serving-tray')" role="button" tabindex="0" aria-label="Learn more about Serving Trays">
+        <div class="product-img">
+          <img src="images/serving-tray.png" alt="Maple and walnut serving tray with coffee" loading="lazy" />
+        </div>
+        <div class="product-body">
+          <h3>Serving Trays</h3>
+          <p>Entertaining essentials with built-in character. Maple and walnut stripe construction with carved handles.</p>
+          <div class="product-footer">
+            <span class="product-price">From $75</span>
+            <button class="btn-learn">Learn More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Live Edge -->
+      <article class="product-card fade-up" onclick="openModal('modal-live-edge')" role="button" tabindex="0" aria-label="Learn more about Live Edge Pieces">
+        <div class="product-img">
+          <img src="images/live-edge.png" alt="Live edge epoxy resin river table" loading="lazy" />
+          <span class="product-tag">Statement Piece</span>
+        </div>
+        <div class="product-body">
+          <h3>Live Edge Pieces</h3>
+          <p>Nature-driven showstoppers. Every slab tells its own story — custom epoxy rivers, LED inlays, and hand-selected slabs.</p>
+          <div class="product-footer">
+            <span class="product-price">Custom Quote</span>
+            <button class="btn-learn">Learn More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Ornaments / Laser -->
+      <article class="product-card fade-up" onclick="openModal('modal-ornaments')" role="button" tabindex="0" aria-label="Learn more about Holiday Ornaments">
+        <div class="product-img">
+          <img src="images/ornaments.png" alt="Laser-engraved personalized wooden Christmas ornaments" loading="lazy" />
+          <span class="product-tag">Personalized</span>
+        </div>
+        <div class="product-body">
+          <h3>Holiday Ornaments & Laser Engravings</h3>
+          <p>Seasonal favorites — laser-engraved, personalized, and cherished for years. Names, verses, dates, and custom designs.</p>
+          <div class="product-footer">
+            <span class="product-price">From $18</span>
+            <button class="btn-learn">Learn More</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- End-Grain -->
+      <article class="product-card fade-up" onclick="openModal('modal-end-grain')" role="button" tabindex="0" aria-label="Learn more about End-Grain Boards">
+        <div class="product-img">
+          <img src="images/end-grain.png" alt="Multi-wood end-grain cutting board with checkerboard pattern" loading="lazy" />
+          <span class="product-tag">Chef's Choice</span>
+        </div>
+        <div class="product-body">
+          <h3>End-Grain Boards</h3>
+          <p>Built for chefs. Built to last. The most complex boards we make — where the wood fibers face up to protect your blade.</p>
+          <div class="product-footer">
+            <span class="product-price">From $250</span>
+            <button class="btn-learn">Learn More</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div style="text-align: center; margin-top: 3rem;">
+      <a href="#custom-order" class="btn btn-dark">Request a Custom Piece →</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     WHY CHOOSE US
+═══════════════════════════════════════════ -->
+<section id="why" aria-label="Why Choose Coffee and Sawdust">
+  <div class="container">
+    <div class="why-header">
+      <div>
+        <span class="section-label">The Difference</span>
+        <h2 class="section-title">Why Coffee & Sawdust?</h2>
+      </div>
+      <p class="section-sub">You can buy a cutting board at Target — but it won't look like this, and it definitely won't last like this.</p>
+    </div>
+
+    <div class="why-grid">
+      <div class="why-card fade-up">
+        <span class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </span>
+        <h4>Handcrafted Locally</h4>
+        <p>Every piece is made by hand right here in Batavia, IL. No factories, no mass production — just skilled hands and good tools.</p>
+      </div>
+
+      <div class="why-card fade-up">
+        <span class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </span>
+        <h4>Responsibly Sourced Woods</h4>
+        <p>Exotic hardwoods sourced from designated, government-regulated suppliers — including Owl Hardwood near Addison, IL. Never from random trees.</p>
+      </div>
+
+      <div class="why-card fade-up">
+        <span class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </span>
+        <h4>Food-Safe & Bacteria-Killing</h4>
+        <p>Hardwood naturally traps and kills bacteria — something plastic boards can't do. We finish every piece with food-safe oil.</p>
+      </div>
+
+      <div class="why-card fade-up">
+        <span class="why-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </span>
+        <h4>Fully Customizable</h4>
+        <p>Choose your wood, size, handle style, rubber feet, and engraving. Custom laser work includes names, dates, Scripture, and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     PROCESS
+═══════════════════════════════════════════ -->
+<section id="process" aria-label="Our Process">
+  <div class="container">
+    <div class="process-header">
+      <span class="section-label">How We Work</span>
+      <h2 class="section-title">The Coffee & Sawdust Process</h2>
+      <p class="section-sub" style="margin: 0 auto;">From raw slab to your kitchen — every step is done with intention.</p>
+    </div>
+
+    <div class="process-steps">
+
+      <div class="process-step fade-up">
+        <div class="step-num">01</div>
+        <div class="step-img">
+          <img src="images/about-shop.png" alt="Selecting exotic hardwood from the shop" loading="lazy" />
+        </div>
+        <h4>Select the Wood</h4>
+        <p>We hand-pick every board from responsibly sourced exotic and domestic hardwoods — Walnut, Maple, Cherry, Purple Heart, and more.</p>
+      </div>
+
+      <div class="process-step fade-up">
+        <div class="step-num">02</div>
+        <div class="step-img">
+          <img src="images/cutting-boards.png" alt="Cutting and shaping the wood" loading="lazy" />
+        </div>
+        <h4>Cut & Shape</h4>
+        <p>Using a planer, jointer, band saw, and router table — each piece is cut and shaped to exact dimensions.</p>
+      </div>
+
+      <div class="process-step fade-up">
+        <div class="step-num">03</div>
+        <div class="step-img">
+          <img src="images/hero.png" alt="Sanding the board smooth" loading="lazy" />
+        </div>
+        <h4>Sand Until Smooth</h4>
+        <p>Through the drum sander and spindle sander — sanded until the surface is smooth as silk and edges are perfectly clean.</p>
+      </div>
+
+      <div class="process-step fade-up">
+        <div class="step-num">04</div>
+        <div class="step-img">
+          <img src="images/process-finish.png" alt="Applying food-safe beeswax and mineral oil finish" loading="lazy" />
+        </div>
+        <h4>Food-Safe Finish</h4>
+        <p>Hand-rubbed with our homemade beeswax and mineral oil blend — made right here in the shop. Sealed and ready for your kitchen.</p>
+      </div>
+
+      <div class="process-step fade-up">
+        <div class="step-num">05</div>
+        <div class="step-img">
+          <img src="images/charcuterie.png" alt="Delivered with pride" loading="lazy" />
+        </div>
+        <h4>Delivered with Pride</h4>
+        <p>Heat-stamped with our brand mark and ready for your home in 2–3 weeks. Every piece inspected before it leaves the shop.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FEATURED PIECE
+═══════════════════════════════════════════ -->
+<section id="featured" aria-label="Featured Piece">
+  <div class="container">
+    <div class="featured-inner">
+
+      <div class="featured-img fade-up">
+        <img src="images/end-grain.png" alt="The Morning Grind Board — multi-wood end-grain masterpiece" loading="lazy" />
+      </div>
+
+      <div class="fade-up">
+        <div class="featured-label">Featured Piece</div>
+        <h2 class="featured-title">The "Morning Grind" Board</h2>
+        <p class="featured-desc">
+          Our most iconic piece. An end-grain masterpiece built from alternating columns of Maple, Walnut, Cherry, and Purple Heart — each chosen for color contrast and durability. The vertical wood fibers protect your knife edge while the checker pattern makes it a conversation starter.
+        </p>
+        <div class="featured-price">$95</div>
+        <div class="featured-stars">★★★★★ &nbsp;Bestseller</div>
+        <div class="featured-actions">
+          <button class="btn btn-primary" onclick="openModal('modal-end-grain')">See Full Details</button>
+          <a href="#custom-order" class="btn btn-outline">Order a Custom Version</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════ -->
+<section id="testimonials" aria-label="Customer Testimonials">
+  <div class="container">
+    <div class="testimonials-header">
+      <span class="section-label">Happy Customers</span>
+      <h2 class="section-title">What Customers Are Saying</h2>
+    </div>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"It looks great and cuts well. I threw out all my plastic boards for these — they actually work better and look way more beautiful on my counter."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">LC</div>
+          <div>
+            <div class="author-name">Liam C.</div>
+            <div class="author-loc">Batavia, IL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"These are great gifts for friends and family — they look absolutely fabulous. Got one for my sister and she used it as décor before she'd even cut anything on it!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SW</div>
+          <div>
+            <div class="author-name">Susan W.</div>
+            <div class="author-loc">Aurora, IL</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"I threw out my plastic boards at home for these. They work great — and every single one looks like a piece of art. Can't believe they're made by a high schooler!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RK</div>
+          <div>
+            <div class="author-name">Rajan K.</div>
+            <div class="author-loc">Geneva, IL</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="testimonials-cta">
+      <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 1rem;">Have a Coffee & Sawdust piece at home? We'd love to hear from you.</p>
+      <a href="#custom-order" class="btn btn-ghost">Leave a Review →</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     NEWSLETTER
+═══════════════════════════════════════════ -->
+<section id="newsletter" aria-label="Newsletter signup">
+  <div class="container">
+    <div class="newsletter-inner">
+
+      <div class="newsletter-text">
+        <h2>Join the Journey</h2>
+        <p>Get updates on new drops, behind-the-scenes builds, exclusive discounts, and first access to limited pieces. No spam — just good sawdust.</p>
+      </div>
+
+      <div>
+        <form
+          name="newsletter"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          class="nl-form"
+          id="newsletter-form"
+        >
+          <input type="hidden" name="form-name" value="newsletter" />
+          <p style="display:none;">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+          <div class="nl-row">
+            <input type="text" name="name" placeholder="Your first name" aria-label="First name" required />
+            <input type="email" name="email" placeholder="Your email address" aria-label="Email address" required />
+          </div>
+          <button type="submit" class="btn btn-dark" style="width: 100%; justify-content: center;">Sign Me Up →</button>
+          <p class="nl-privacy">We respect your privacy. Unsubscribe anytime.</p>
+        </form>
+        <div class="form-success" id="newsletter-success">
+          <h4>You're in! Welcome to the shop.</h4>
+          <p>Thanks for joining. Watch your inbox for new drops and behind-the-scenes content.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CUSTOM ORDER FORM
+═══════════════════════════════════════════ -->
+<section id="custom-order" aria-label="Custom Order Form">
+  <div class="container">
+    <div class="order-grid">
+
+      <div class="order-info">
+        <span class="section-label">Make It Yours</span>
+        <h2 class="section-title">Request a Custom Piece</h2>
+        <p>
+          Your idea + our craftsmanship = something special. Tell us what you're envisioning and Dylan will get back to you within 48 hours with a quote and timeline.
+        </p>
+
+        <div class="order-perks">
+          <div class="perk">
+            <span class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/>
+              </svg>
+            </span>
+            <div class="perk-text">
+              <strong>10+ Wood Choices</strong>
+              Maple, Walnut, Cherry, Purple Heart, Wenge, Yellow Heart, White Oak, Padauk, Sapele & more
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </span>
+            <div class="perk-text">
+              <strong>Laser Engraving Available</strong>
+              Names, dates, Scripture, logos, custom artwork — burned in with precision
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21.3 8.7 8.7 21.3c-1 1-2.5 1-3.4 0l-2.6-2.6c-1-1-1-2.5 0-3.4L15.3 2.7c1-1 2.5-1 3.4 0l2.6 2.6c1 1 1 2.5 0 3.4Z"/><path d="m7.5 10.5 2 2"/><path d="m10.5 7.5 2 2"/><path d="m13.5 4.5 2 2"/><path d="m4.5 13.5 2 2"/>
+              </svg>
+            </span>
+            <div class="perk-text">
+              <strong>Any Size You Need</strong>
+              From small personal boards up to 20" × 16" — we'll build to your spec
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </span>
+            <div class="perk-text">
+              <strong>2–3 Week Turnaround</strong>
+              Most custom pieces ship within 2–3 weeks of order confirmation
+            </div>
+          </div>
+          <div class="perk">
+            <span class="perk-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+              </svg>
+            </span>
+            <div class="perk-text">
+              <strong>Free Board Conditioner</strong>
+              Every order includes a sample of our homemade beeswax & mineral oil blend
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="order-form-wrap">
+        <h3>Tell Us About Your Piece</h3>
+
+        <form
+          name="custom-order"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          id="order-form"
+        >
+          <input type="hidden" name="form-name" value="custom-order" />
+          <p style="display:none;">
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="form-grid">
+
+            <div class="field">
+              <label for="o-name">First Name *</label>
+              <input type="text" id="o-name" name="name" placeholder="Dylan" required />
+            </div>
+
+            <div class="field">
+              <label for="o-last">Last Name *</label>
+              <input type="text" id="o-last" name="last_name" placeholder="Wilson" required />
+            </div>
+
+            <div class="field">
+              <label for="o-email">Email *</label>
+              <input type="email" id="o-email" name="email" placeholder="you@example.com" required />
+            </div>
+
+            <div class="field">
+              <label for="o-phone">Phone (optional)</label>
+              <input type="tel" id="o-phone" name="phone" placeholder="(630) 555-0100" />
+            </div>
+
+            <div class="field full">
+              <label for="o-product">Product Type *</label>
+              <select id="o-product" name="product_type" required>
+                <option value="" disabled selected>Select a product...</option>
+                <option value="cutting-board">Cutting Board</option>
+                <option value="charcuterie">Charcuterie Board</option>
+                <option value="coasters">Coaster Set</option>
+                <option value="serving-tray">Serving Tray</option>
+                <option value="end-grain">End-Grain Board</option>
+                <option value="live-edge">Live Edge Piece</option>
+                <option value="ornament">Holiday Ornament(s)</option>
+                <option value="key-chain">Laser-Engraved Key Chain</option>
+                <option value="table">Custom Table</option>
+                <option value="other">Other / Not Sure</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="o-wood">Preferred Wood</label>
+              <select id="o-wood" name="wood_preference">
+                <option value="" selected>No preference / Surprise me</option>
+                <option value="maple">Maple</option>
+                <option value="walnut">Walnut</option>
+                <option value="cherry">Cherry</option>
+                <option value="purple-heart">Purple Heart</option>
+                <option value="padauk">Padauk (Red)</option>
+                <option value="yellow-heart">Yellow Heart</option>
+                <option value="wenge">Wenge (Darkest)</option>
+                <option value="white-oak">White Oak</option>
+                <option value="mixed">Mixed / Multi-Wood</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="o-size">Approximate Size</label>
+              <select id="o-size" name="size">
+                <option value="" selected>Not sure yet</option>
+                <option value="small">Small (under 10")</option>
+                <option value="medium">Medium (10–15")</option>
+                <option value="large">Large (15–20")</option>
+                <option value="custom">Custom dimensions</option>
+              </select>
+            </div>
+
+            <div class="field full">
+              <label for="o-engrave">Engraving Text / Design (optional)</label>
+              <input type="text" id="o-engrave" name="engraving" placeholder="e.g. 'The Johnson Family', a Bible verse, or a logo description" />
+            </div>
+
+            <div class="field full">
+              <label for="o-notes">Tell Us More *</label>
+              <textarea id="o-notes" name="notes" placeholder="Describe your vision — it's a gift, a special occasion, a specific design idea. The more detail, the better!" required></textarea>
+            </div>
+
+            <div class="field full">
+              <label for="o-budget">Approximate Budget</label>
+              <select id="o-budget" name="budget">
+                <option value="" selected>Flexible / Not sure</option>
+                <option value="under-50">Under $50</option>
+                <option value="50-100">$50 – $100</option>
+                <option value="100-200">$100 – $200</option>
+                <option value="200-400">$200 – $400</option>
+                <option value="400+">$400+</option>
+              </select>
+            </div>
+
+          </div>
+
+          <p class="form-note" style="margin-bottom: 1rem;">* Required fields. Dylan will respond within 48 hours with availability and a quote.</p>
+
+          <button type="submit" class="btn btn-dark" style="width: 100%; justify-content: center; padding: 1rem;">
+            Send My Request →
+          </button>
+        </form>
+
+        <div class="form-success" id="order-success">
+          <h4>Request Received — Sanding the edges now!</h4>
+          <p>Dylan will be in touch within 48 hours with your quote and next steps. Thanks for supporting a local, handmade business.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer id="footer" aria-label="Footer">
+  <div class="container">
+    <div class="footer-grid">
+
+      <div class="footer-brand">
+        <div class="logo-main">Coffee & Sawdust</div>
+        <div class="logo-sub">Batavia, IL · Est. 2024</div>
+        <p>Small-batch, handcrafted hardwood goods made from a Batavia garage. Built with coffee. Powered by creativity.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h5>Shop</h5>
+        <ul>
+          <li><a href="#products">Cutting Boards</a></li>
+          <li><a href="#products">Charcuterie Boards</a></li>
+          <li><a href="#products">Coasters</a></li>
+          <li><a href="#products">Serving Trays</a></li>
+          <li><a href="#products">Live Edge Pieces</a></li>
+          <li><a href="#products">Ornaments & Laser</a></li>
+          <li><a href="#products">End-Grain Boards</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#" onclick="openModal('modal-team'); return false;">Meet the Makers</a></li>
+          <li><a href="#process">Our Process</a></li>
+          <li><a href="#testimonials">Reviews</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Order</h5>
+        <ul>
+          <li><a href="#custom-order">Custom Orders</a></li>
+          <li><a href="#" onclick="openModal('modal-cutting-boards'); return false;">FAQs</a></li>
+          <li><a href="#newsletter">Contact Us</a></li>
+          <li><a href="#" onclick="openModal('modal-about'); return false;">Care Guide</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 Coffee & Sawdust. All rights reserved. Built with coffee. Powered by creativity.</p>
+      <p><a href="#hero">Back to top ↑</a></p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     MODALS
+═══════════════════════════════════════════ -->
+
+<!-- Modal: Our Story -->
+<div class="modal-overlay" id="modal-about" role="dialog" aria-modal="true" aria-labelledby="modal-about-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/hero.png" alt="Dylan and his father in the woodshop" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">Our Story</span>
+      <h2 class="modal-hero-title" id="modal-about-title">How It All Started</h2>
+      <button class="modal-close" onclick="closeModal('modal-about')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">
+        Coffee & Sawdust was born from a tradition Dylan shared with his father — starting each day with a fresh cup of coffee before heading out to their garage woodshop to build something together.
+      </p>
+      <p style="color: var(--text-light); margin-bottom: 1.5rem; line-height: 1.75;">
+        It started in a Minnesota basement. Dylan's grandfather was a computer engineer who did woodworking on the side, passing the craft to Dylan's dad. When the family moved to Batavia, the shop came with them — and it grew. A planer, a jointer, a drum sander, a laser engraver, a router table. One tool at a time, the workshop took shape.
+      </p>
+      <p style="color: var(--text-light); margin-bottom: 1.75rem; line-height: 1.75;">
+        Those early mornings — filled with sawdust, conversation, and craftsmanship — became the foundation for what would eventually grow into Coffee & Sawdust. Dylan started making boards on his own, entered the school's business incubator program, sold at the Rustic Fox Market in Aurora, and kept building from there.
+      </p>
+
+      <div class="modal-details">
+        <div class="detail-card">
+          <h5>Where We Source Wood</h5>
+          <p>Owl Hardwood, near Addison/Downers Grove, IL — a specialty exotic hardwood supplier carrying Walnut, Maple, Purple Heart, Padauk, Wenge, Yellow Heart, Sapele, White Oak, and more.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Board Care — The Secret</h5>
+          <p>Once a month, apply our homemade beeswax and mineral oil blend. Let it sit for an hour, then buff off. Your board will stay sealed, beautiful, and food-safe for years.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Do Wood Boards Kill Bacteria?</h5>
+          <p>Yes. Hardwood traps and kills bacteria naturally through capillary action — something plastic boards can't do. We also use a food-safe finish on every piece.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Are Boards Mass Produced?</h5>
+          <p>Never. Each board is hand-selected, individually cut, sanded, and finished. Same dimensions, but no two pieces ever look exactly alike — the grain makes every one unique.</p>
+        </div>
+      </div>
+
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-about')">Request a Custom Piece</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-about'); openModal('modal-team');">Meet the Team</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Team -->
+<div class="modal-overlay" id="modal-team" role="dialog" aria-modal="true" aria-labelledby="modal-team-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/about-shop.png" alt="The Coffee & Sawdust workshop" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">The Makers</span>
+      <h2 class="modal-hero-title" id="modal-team-title">Meet the Team</h2>
+      <button class="modal-close" onclick="closeModal('modal-team')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">Three BHS students, one shared mission — make something real, make it well, and make it last.</p>
+
+      <div class="team-cards">
+        <div class="team-card">
+          <img class="team-card-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800,c_fill,g_face/v1772073858/profile-dylan_zeciil.jpg" alt="Dylan — Founder and Craftsman" loading="lazy" />
+          <div class="team-card-overlay">
+            <h4>Dylan</h4>
+            <div class="role">Founder & Craftsman</div>
+            <p>Senior at BHS. Dylan is the builder — the one with sawdust in his hair and a vision for every slab. Drives 45 minutes to Owl Hardwood 1–2× a month because the right wood is worth it.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img class="team-card-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800,c_fill,g_face/v1772074259/profile-jimmy-b_lg0hul.jpg" alt="Jimmy — Advertising and PR" loading="lazy" />
+          <div class="team-card-overlay">
+            <h4>Jimmy</h4>
+            <div class="role">Advertising & PR</div>
+            <p>Junior at BHS. Jimmy handles advertising, public speaking, and keeps operations organized. The voice that takes Coffee & Sawdust to new audiences — markets, pitches, and beyond.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <img class="team-card-photo" src="https://res.cloudinary.com/dsbllwpbh/image/upload/f_auto,q_auto,w_800,c_fill,g_face/v1772073857/profile-sasha_k0whkc.jpg" alt="Sasha — Brand and Social Media" loading="lazy" />
+          <div class="team-card-overlay">
+            <h4>Sasha</h4>
+            <div class="role">Brand & Social Media</div>
+            <p>Senior at BHS. Sasha runs social media and has shaped the brand's visual identity and aesthetic. She's the reason Coffee & Sawdust looks as good as it feels.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-tags">
+        <span class="tag">Batavia, IL</span>
+        <span class="tag">BHS Students</span>
+        <span class="tag">Business Incubator</span>
+        <span class="tag">Rustic Fox Market</span>
+        <span class="tag">Gen Z Entrepreneurs</span>
+      </div>
+
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-team')">Order Something Custom</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-team')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Cutting Boards -->
+<div class="modal-overlay" id="modal-cutting-boards" role="dialog" aria-modal="true" aria-labelledby="modal-cb-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/cutting-boards.png" alt="Handcrafted cutting boards" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">Bestseller</span>
+      <h2 class="modal-hero-title" id="modal-cb-title">Cutting Boards</h2>
+      <button class="modal-close" onclick="closeModal('modal-cutting-boards')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">Our most popular product. Handcrafted from exotic and domestic hardwoods — each board is a functional tool and a piece of art for your kitchen.</p>
+
+      <div class="modal-details">
+        <div class="detail-card">
+          <h5>Available Sizes</h5>
+          <p>Small personal boards · 10×15" (The Batavia Classic) · Up to 20×16" custom. With or without handle. Rubber feet available for no-slip use.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Why Hardwood?</h5>
+          <p>Hardwood naturally traps and kills bacteria — unlike plastic boards. Our food-safe finish seals the wood, keeping your family safe and your board beautiful.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Wood Options</h5>
+          <p>Maple, Walnut, Cherry, Purple Heart, Wenge, Yellow Heart, White Oak, Padauk, Sapele. Mixed stripe designs available.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Customization</h5>
+          <p>Choose wood type, size, handle (yes/no), rubber feet (yes/no), and laser engraving. Names, dates, logos, Bible verses — all possible.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Pricing</h5>
+          <p>Starting at $45 for small boards · $65–$120 for full-size boards · End-grain designs start at $250. Wood choice affects final price.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Care Instructions</h5>
+          <p>Monthly: rub with beeswax & mineral oil, let sit 1 hour, buff off. Never submerge in water. Hand wash only. Will last a lifetime with care.</p>
+        </div>
+      </div>
+
+      <div class="modal-tags">
+        <span class="tag">Food Safe</span>
+        <span class="tag">Bacteria Resistant</span>
+        <span class="tag">Knife Friendly</span>
+        <span class="tag">Custom Sizing</span>
+        <span class="tag">Laser Engraving</span>
+        <span class="tag">Rubber Feet Option</span>
+        <span class="tag">2–3 Week Turnaround</span>
+      </div>
+
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-cutting-boards')">Order a Custom Board</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-cutting-boards')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Charcuterie -->
+<div class="modal-overlay" id="modal-charcuterie" role="dialog" aria-modal="true" aria-labelledby="modal-ch-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/charcuterie.png" alt="Styled charcuterie board" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">For Entertaining</span>
+      <h2 class="modal-hero-title" id="modal-ch-title">Charcuterie Boards</h2>
+      <button class="modal-close" onclick="closeModal('modal-charcuterie')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">Elegant hosting pieces built to impress. Whether it's a dinner party, holiday gathering, or a gift for someone who has everything — a Coffee & Sawdust charcuterie board makes a statement.</p>
+      <div class="modal-details">
+        <div class="detail-card">
+          <h5>Design Options</h5>
+          <p>Live-edge natural boards, striped multi-wood panels, round slab cuts. With juice groove, without, with handle, or wall-display ready.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Perfect Gift</h5>
+          <p>Personalized with a name, family crest, or wedding date via laser engraving. Packaged beautifully for gifting.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Wood Choices</h5>
+          <p>Walnut is most popular for charcuterie — dark, rich, and stunning under food. Maple and Cherry also available for lighter looks.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Pricing</h5>
+          <p>Standard boards from $65. Large live-edge charcuterie slabs from $120. Custom engraving adds $15–$25 depending on complexity.</p>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-charcuterie')">Order One</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-charcuterie')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Coasters -->
+<div class="modal-overlay" id="modal-coasters" role="dialog" aria-modal="true" aria-labelledby="modal-co-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/coasters.png" alt="Wood coasters" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">Sets of 4</span>
+      <h2 class="modal-hero-title" id="modal-co-title">Table Coasters</h2>
+      <button class="modal-close" onclick="closeModal('modal-coasters')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">From rustic to modern — protect your tables in style. Each coaster is cut from a single piece of exotic hardwood and sanded smooth with a water-resistant finish.</p>
+      <div class="modal-details">
+        <div class="detail-card">
+          <h5>Available Styles</h5>
+          <p>Round cross-section coasters showing natural growth rings · Square flat-cut coasters · Mixed wood sets with contrasting species.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Sets & Pricing</h5>
+          <p>Sets of 4 starting at $35. Mixed-wood matched sets from $50. Custom engraving (monograms, etc.) available on each coaster.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Wood Options</h5>
+          <p>Wenge (darkest), Walnut, Cherry, Maple, Purple Heart — or mix and match across a set for maximum visual impact.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Great Gift Sets</h5>
+          <p>Coaster sets are one of our most popular gifts — lightweight, useful, and beautifully packaged. Perfect for housewarmings.</p>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-coasters')">Order a Set</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-coasters')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Serving Tray -->
+<div class="modal-overlay" id="modal-serving-tray" role="dialog" aria-modal="true" aria-labelledby="modal-st-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/serving-tray.png" alt="Wood serving tray" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">For the Home</span>
+      <h2 class="modal-hero-title" id="modal-st-title">Serving Trays</h2>
+      <button class="modal-close" onclick="closeModal('modal-serving-tray')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">Entertaining essentials with built-in character. Our serving trays combine the warmth of natural wood with practical design — carved handles, sturdy build, smooth finish.</p>
+      <div class="modal-details">
+        <div class="detail-card">
+          <h5>Construction</h5>
+          <p>Striped Maple & Walnut panels glued and clamped for strength. Carved or routed handles on each end. Food-safe finish throughout.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Sizes</h5>
+          <p>Standard breakfast tray, ottoman tray, and bar/serving tray sizes. Custom dimensions available on request.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Pricing</h5>
+          <p>Standard trays from $75. Large ottoman or bar trays from $110. Laser engraving (family name, monogram) available.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Gifting</h5>
+          <p>A popular wedding, anniversary, and housewarming gift. Custom engraving with couple's name and wedding date is our most requested add-on.</p>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-serving-tray')">Request a Tray</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-serving-tray')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Live Edge -->
+<div class="modal-overlay" id="modal-live-edge" role="dialog" aria-modal="true" aria-labelledby="modal-le-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/live-edge.png" alt="Live edge epoxy river table" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">One of a Kind</span>
+      <h2 class="modal-hero-title" id="modal-le-title">Live Edge Pieces</h2>
+      <button class="modal-close" onclick="closeModal('modal-live-edge')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">Nature-driven showstoppers. Every live-edge slab is hand-selected from the wood store — no two are alike. The raw edge of the tree is preserved, telling the story of the wood itself.</p>
+      <div class="modal-details">
+        <div class="detail-card">
+          <h5>Current Project</h5>
+          <p>Dylan is building a 52" × 27" live-edge table with a blue epoxy river through the center, embedded Star Wars figurines visible under the resin, and LED lighting in the side edges.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Epoxy Options</h5>
+          <p>River tables in any color. Glow-in-the-dark epoxy. Embedded objects (coins, figurines, flowers, shells). Ocean pour effects.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Scale</h5>
+          <p>From live-edge serving boards to coffee tables, dining tables, and desk surfaces. Centerpieces, wall art, and mantels also available.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Pricing & Timeline</h5>
+          <p>Live edge pieces are custom-quoted based on slab cost, epoxy, and complexity. Tables start around $400+. Timeline is typically 4–8 weeks.</p>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-live-edge')">Request a Custom Quote</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-live-edge')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Ornaments -->
+<div class="modal-overlay" id="modal-ornaments" role="dialog" aria-modal="true" aria-labelledby="modal-or-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/ornaments.png" alt="Laser-engraved wooden ornaments" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">Personalized</span>
+      <h2 class="modal-hero-title" id="modal-or-title">Holiday Ornaments & Laser Engravings</h2>
+      <button class="modal-close" onclick="closeModal('modal-ornaments')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">Seasonal favorites and year-round personalized gifts. Dylan's laser engraver can put almost anything on wood — names, dates, Scripture, logos, and custom artwork.</p>
+      <div class="modal-details">
+        <div class="detail-card">
+          <h5>Ornament Styles</h5>
+          <p>Round, teardrop, star, and rectangular ornaments in Maple and Cherry. Designs include snowflakes, trees, nativity scenes, and fully custom artwork.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Key Chains</h5>
+          <p>Laser-engraved wood key chains — Bible verses, names, initials. Popular with church groups and as personalized gifts. Dylan first sold these to his church group.</p>
+        </div>
+        <div class="detail-card">
+          <h5>What Can Be Engraved?</h5>
+          <p>Names, family names, dates, Scripture references, favorite quotes, logos (vector files preferred), map outlines, portraits (with clear reference image).</p>
+        </div>
+        <div class="detail-card">
+          <h5>Pricing</h5>
+          <p>Ornaments from $18 each · Key chains from $12 · Bulk discounts for orders of 10+. Perfect for churches, schools, teams, and events.</p>
+        </div>
+      </div>
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-ornaments')">Place an Order</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-ornaments')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: End-Grain -->
+<div class="modal-overlay" id="modal-end-grain" role="dialog" aria-modal="true" aria-labelledby="modal-eg-title">
+  <div class="modal">
+    <div class="modal-hero">
+      <img src="images/end-grain.png" alt="End-grain cutting board with mosaic pattern" />
+      <div class="modal-hero-overlay"></div>
+      <span class="modal-hero-tag">Chef's Choice</span>
+      <h2 class="modal-hero-title" id="modal-eg-title">End-Grain Boards</h2>
+      <button class="modal-close" onclick="closeModal('modal-end-grain')" aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <p class="modal-intro">The most technically demanding boards we make — and the most beautiful. End-grain boards expose the cross-section of the wood fibers, creating a stunning mosaic pattern that's also the most knife-friendly surface you can own.</p>
+      <div class="modal-details">
+        <div class="detail-card">
+          <h5>What is End-Grain?</h5>
+          <p>Instead of cutting with the wood's length, we rotate each piece 90°. The fibers face up like a bundle of straws — your knife slips between them instead of across them, protecting both the blade and the board.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Why It's More Work</h5>
+          <p>Every piece must be squared to 90° on all sides, then glued in precise arrangements. Any variation shows. It takes significantly longer than a face-grain board — and that's reflected in the price.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Wood Combinations</h5>
+          <p>Walnut + Maple is the classic. Purple Heart + Cherry creates stunning contrast. Custom color arrangements available — you choose the woods, we design the pattern.</p>
+        </div>
+        <div class="detail-card">
+          <h5>Pricing</h5>
+          <p>Starting at $250 due to wood cost and labor. Large end-grain boards with exotic woods run $300–$400+. Worth every penny — these last decades.</p>
+        </div>
+      </div>
+      <div class="modal-tags">
+        <span class="tag">Most Knife-Friendly</span>
+        <span class="tag">Self-Healing Surface</span>
+        <span class="tag">Stunning Mosaic Pattern</span>
+        <span class="tag">Built for Chefs</span>
+        <span class="tag">Heirloom Quality</span>
+      </div>
+      <div class="modal-cta">
+        <a href="#custom-order" class="btn btn-dark" onclick="closeModal('modal-end-grain')">Order an End-Grain Board</a>
+        <button class="btn btn-ghost" onclick="closeModal('modal-end-grain')">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+  // ── Mobile hamburger ─────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', isOpen);
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', false);
+    });
+  });
+
+  // ── Modal system ─────────────────────────
+  function openModal(id) {
+    const overlay = document.getElementById(id);
+    if (!overlay) return;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    const firstFocusable = overlay.querySelector('button, a, input, select, textarea');
+    if (firstFocusable) setTimeout(() => firstFocusable.focus(), 100);
+  }
+
+  function closeModal(id) {
+    const overlay = document.getElementById(id);
+    if (!overlay) return;
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Close on overlay click
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal(overlay.id);
+    });
+  });
+
+  // Close on Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
+    }
+  });
+
+  // Keyboard activation for product cards
+  document.querySelectorAll('.product-card[role="button"]').forEach(card => {
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        card.click();
+      }
+    });
+  });
+
+  // ── Form submissions ─────────────────────
+  async function handleFormSubmit(formId, successId) {
+    const form = document.getElementById(formId);
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitBtn = form.querySelector('[type="submit"]');
+      submitBtn.textContent = 'Sending...';
+      submitBtn.disabled = true;
+
+      try {
+        const data = new FormData(form);
+        await fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data).toString(),
+        });
+        form.style.display = 'none';
+        document.getElementById(successId).classList.add('show');
+      } catch (err) {
+        submitBtn.textContent = 'Something went wrong. Try again.';
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
+  handleFormSubmit('newsletter-form', 'newsletter-success');
+  handleFormSubmit('order-form', 'order-success');
+
+  // ── Scroll fade-in animations ────────────
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ── Smooth nav highlight on scroll ───────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === `#${current}`
+        ? 'var(--sawdust)'
+        : 'rgba(255,255,255,0.8)';
+    });
+  }, { passive: true });
+</script>
+
+</body>
+</html>
